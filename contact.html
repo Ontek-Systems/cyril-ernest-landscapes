@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
@@ -43,7 +43,7 @@
             --color-brand-accent: #df5164;
             
             --font-heading: 'Cinzel', serif;
-            --font-body: 'Inter', sans-serif;
+            --font-body: 'Calibri', sans-serif;
         }
         
         body { 
@@ -519,7 +519,7 @@
                     <div class="lg:hidden absolute bottom-3 left-3 right-3 z-[998] pointer-events-none">
                         <div style="background:rgba(255,255,255,0.94);border:1px solid rgba(26,26,26,0.08);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:8px;">
                             <svg style="width:14px;height:14px;flex-shrink:0;" fill="#df5164" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(26,26,26,0.6);">Tap a pin or use the pills above to explore</span>
+                            <span style="font-family:'Calibri',sans-serif;font-size:12px;font-weight:500;color:rgba(26,26,26,0.6);">Tap a pin or use the pills above to explore</span>
                         </div>
                     </div>
                 </div>
@@ -615,7 +615,7 @@
             display: inline-flex; align-items: center; gap: 6px;
             padding: 8px 16px; border-radius: 999px; border: 1.5px solid rgba(26,26,26,0.12);
             background: white; cursor: pointer; white-space: nowrap;
-            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+            font-family: 'Calibri', sans-serif; font-size: 13px; font-weight: 600;
             color: rgba(26,26,26,0.75); transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
@@ -667,7 +667,7 @@
         function popupHtml(loc) {
             var isMobile = window.innerWidth < 640;
             var minW = isMobile ? 200 : 230;
-            return '<div style="font-family:Inter,sans-serif;min-width:' + minW + 'px;max-width:' + (isMobile ? 240 : 280) + 'px;">'
+            return '<div style="font-family:Calibri,sans-serif;min-width:' + minW + 'px;max-width:' + (isMobile ? 240 : 280) + 'px;">'
                 + '<div style="background:' + (loc.base ? DARK : ACC) + ';padding:12px 16px 10px;">'
                 + '<div style="display:flex;align-items:center;gap:7px;">'
                 + '<svg width="12" height="12" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'
