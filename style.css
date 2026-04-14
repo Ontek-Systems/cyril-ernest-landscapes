@@ -62,14 +62,31 @@ img {
         max-width: 88vw;
         margin-left: auto;
         margin-right: auto;
-        padding-top: 0.45rem !important;
-        padding-bottom: 0.45rem !important;
+        padding-top: 0.4rem !important;
+        padding-bottom: 0.4rem !important;
+    }
+
+    /* Hero buttons (site-btn) — smaller text & tighter padding on mobile */
+    .site-btn {
+        font-size: 1rem !important;
+        padding-left: 1.25rem !important;
+        padding-right: 0.5rem !important;
     }
 
     /* Ensure wrapper divs that flex-row buttons sit in are centered */
     .flex.flex-row.flex-wrap.gap-4,
     .flex.flex-row.flex-wrap.gap-6 {
         justify-content: center;
+    }
+
+    /* Service card bullet lists — prevent long labels wrapping on mobile */
+    .svc-feature-list li {
+        font-size: 0.9rem !important;
+    }
+
+    /* About "Why Choose Us" tick items — prevent text breaking on mobile */
+    .why-tick {
+        font-size: 0.9375rem !important;
     }
 }
 
