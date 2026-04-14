@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -38,7 +38,7 @@
         @theme {
             --color-brand-dark: #1A1A1A;
             --color-brand-green: #16a34a;
-            --color-brand-beige: #F8F9F4;
+            --color-brand-beige: #f8f7ed;
             --color-brand-text: #111827;
             --color-brand-accent: #df5164;
             
@@ -92,6 +92,38 @@
             border-radius: 9999px;
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* ── Masonry all-projects grid ── */
+        #all-projects-grid {
+            columns: 1;
+            column-gap: 1.25rem;
+        }
+        @media (min-width: 640px)  { #all-projects-grid { columns: 2; } }
+        @media (min-width: 1024px) { #all-projects-grid { columns: 3; } }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.13);
+            border: 1px solid rgba(0,0,0,0.05);
+            background: #e5e7eb;
+        }
+        .masonry-item img { width: 100%; display: block; transition: transform 0.7s ease; }
+        .masonry-item:hover img { transform: scale(1.05); }
+        .masonry-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,26,26,0.88) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.25rem 1.5rem;
+        }
+        .masonry-item:hover .masonry-overlay { opacity: 1; }
     </style>
 
     <link rel="stylesheet" href="style.css">
@@ -124,7 +156,7 @@
                 <span class="pill-label">
                     Project Gallery
                 </span>
-                <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal text-brand-dark leading-tight relative pb-6 group/h2 flex flex-col items-center">
+                <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-semibold text-brand-dark leading-tight relative pb-6 group/h2 flex flex-col items-center">
                     General Projects
                     <span class="section-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-16 md:w-20 group-hover/h2:w-32 md:group-hover/h2:w-40"></span>
                 </h2>
@@ -156,7 +188,7 @@
                     </li>
                     <li>
                         <a href="#commercial-garden-maintenance" class="filter-btn block px-4 py-2 rounded-full font-body text-sm md:text-base font-semibold transition-all duration-300 whitespace-nowrap text-brand-dark/70 hover:bg-gray-100 hover:text-brand-dark" data-filter="commercial-garden-maintenance">
-                           Commercial Garden Maintenance
+                           Commercial Maintenance
                         </a>
                     </li>
                     <li>
@@ -231,6 +263,9 @@
                 </div>
         </div>
         <div class="w-full max-w-[98rem] mx-auto px-4 sm:px-6 lg:px-10 relative z-20 flex-grow">
+            <!-- All Projects Masonry Grid -->
+            <div id="all-projects-grid" class="mb-16" style="display:none;"></div>
+
             <!-- Category: Bespoke Planting Plans -->
             <div class="category-section reveal reveal-up mb-24" data-category="bespoke-planting-plans" id="bespoke-planting-plans">
                 <h3 class="font-heading text-3xl md:text-4xl font-normal text-brand-dark mb-8 text-center relative max-w-max mx-auto pb-4 group/h2">
@@ -261,10 +296,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Category: Commercial Garden Maintenance -->
+            <!-- Category: Commercial Maintenance -->
             <div class="category-section reveal reveal-up mb-24" data-category="commercial-garden-maintenance" id="commercial-garden-maintenance">
                 <h3 class="font-heading text-3xl md:text-4xl font-normal text-brand-dark mb-8 text-center relative max-w-max mx-auto pb-4 group/h2">
-                    Commercial Garden Maintenance
+                    Commercial Maintenance
                     <span class="section-bar absolute bottom-0 left-1/2 -translate-x-1/2 w-12 group-hover/h2:w-20"></span>
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
@@ -1037,11 +1072,89 @@
         const scrollLeftBtn = document.getElementById('scroll-left');
         const scrollRightBtn = document.getElementById('scroll-right');
 
+        // === Masonry grid for "All Projects" view ===
+        let masonryBuilt = false;
+        window.masonryImages = [];
+        window.masonryIndex = 0;
+        window.masonryMode = false;
+
+        function openMasonryLightbox(index) {
+            window.masonryIndex = index;
+            window.masonryMode = true;
+            const item = window.masonryImages[index];
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCaption = document.getElementById('lightbox-caption');
+            lbImg.src = item.src;
+            lbImg.alt = item.alt || '';
+            lbCaption.textContent = item.caption || '';
+            lb.classList.remove('hidden');
+            setTimeout(() => lb.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function buildMasonryGrid() {
+            if (masonryBuilt) return;
+            masonryBuilt = true;
+            const allGrid = document.getElementById('all-projects-grid');
+
+            sections.forEach(sec => {
+                // BA slider after image (first <img> inside .ba-slider)
+                sec.querySelectorAll('.ba-slider').forEach(slider => {
+                    const afterImg = slider.querySelector('img:first-child');
+                    if (afterImg) {
+                        window.masonryImages.push({
+                            src: afterImg.getAttribute('src'),
+                            alt: afterImg.getAttribute('alt'),
+                            caption: afterImg.getAttribute('alt')
+                        });
+                    }
+                });
+                // Regular gallery-item buttons
+                sec.querySelectorAll('.gallery-item').forEach(item => {
+                    const src = item.getAttribute('data-src');
+                    const caption = item.getAttribute('data-caption');
+                    const img = item.querySelector('img');
+                    window.masonryImages.push({
+                        src,
+                        alt: img ? img.getAttribute('alt') : caption,
+                        caption
+                    });
+                });
+            });
+
+            window.masonryImages.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'masonry-item';
+                div.innerHTML = `
+                    <img src="${item.src}" alt="${item.alt || ''}" loading="lazy" decoding="async">
+                    <div class="masonry-overlay">
+                        <span style="color:white;font-family:'Cinzel',serif;font-size:1rem;font-weight:700;letter-spacing:0.05em;">View Detail</span>
+                    </div>`;
+                div.addEventListener('click', () => openMasonryLightbox(i));
+                allGrid.appendChild(div);
+            });
+        }
+
+        // Center category grids that have only 1–2 items (switch grid → flex so justify-center works)
+        sections.forEach(sec => {
+            const grid = sec.querySelector('.grid');
+            if (grid && grid.children.length <= 2) {
+                // Remove Tailwind grid classes and switch to flex
+                grid.classList.remove('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+                grid.classList.add('flex', 'flex-wrap', 'justify-center', 'gap-8', 'md:gap-10');
+                Array.from(grid.children).forEach(child => {
+                    child.style.width = '100%';
+                    child.style.maxWidth = '400px';
+                });
+            }
+        });
+
         // 1. Filtering Logic
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                
+
                 filterBtns.forEach(b => {
                     b.classList.remove('bg-[#df5164]', 'text-white', 'shadow-md');
                     b.classList.add('text-brand-dark/70', 'hover:bg-gray-100', 'hover:text-brand-dark');
@@ -1050,19 +1163,28 @@
                 btn.classList.add('bg-[#df5164]', 'text-white', 'shadow-md');
 
                 const filter = btn.getAttribute('data-filter');
+                const allGrid = document.getElementById('all-projects-grid');
 
-                sections.forEach(sec => {
-                    if (filter === 'all' || sec.getAttribute('data-category') === filter) {
-                        sec.style.display = 'block';
-                    } else {
-                        sec.style.display = 'none';
-                    }
-                });
-                
+                if (filter === 'all') {
+                    buildMasonryGrid();
+                    allGrid.style.display = 'block';
+                    sections.forEach(sec => { sec.style.display = 'none'; });
+                } else {
+                    allGrid.style.display = 'none';
+                    sections.forEach(sec => {
+                        sec.style.display = sec.getAttribute('data-category') === filter ? 'block' : 'none';
+                    });
+                }
+
                 window.scrollBy(0, 1);
                 window.scrollBy(0, -1);
             });
         });
+
+        // Initialize: default to "All Projects" masonry on load
+        buildMasonryGrid();
+        document.getElementById('all-projects-grid').style.display = 'block';
+        sections.forEach(sec => { sec.style.display = 'none'; });
 
         // 2. Horizontal Scroll Logic
         if (navContainer && scrollLeftBtn && scrollRightBtn) {
@@ -1236,6 +1358,7 @@
         };
         
         const closeLightbox = () => {
+            window.masonryMode = false;
             lightbox.classList.add('opacity-0');
             setTimeout(() => {
                 lightbox.classList.add('hidden');
@@ -1254,22 +1377,40 @@
         document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
         document.getElementById('lightbox-next').addEventListener('click', (e) => {
             e.stopPropagation();
-            updateLightboxContent(currentIndex + 1);
+            if (window.masonryMode) {
+                window.masonryIndex = (window.masonryIndex + 1) % window.masonryImages.length;
+                const im = window.masonryImages[window.masonryIndex];
+                lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCaption.textContent = im.caption || '';
+            } else { updateLightboxContent(currentIndex + 1); }
         });
         document.getElementById('lightbox-prev').addEventListener('click', (e) => {
             e.stopPropagation();
-            updateLightboxContent(currentIndex - 1);
+            if (window.masonryMode) {
+                window.masonryIndex = (window.masonryIndex - 1 + window.masonryImages.length) % window.masonryImages.length;
+                const im = window.masonryImages[window.masonryIndex];
+                lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCaption.textContent = im.caption || '';
+            } else { updateLightboxContent(currentIndex - 1); }
         });
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
+            if (e.target === lightbox) { closeLightbox(); }
         });
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('hidden')) {
                 if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowRight') updateLightboxContent(currentIndex + 1);
-                if (e.key === 'ArrowLeft') updateLightboxContent(currentIndex - 1);
+                if (e.key === 'ArrowRight') {
+                    if (window.masonryMode) {
+                        window.masonryIndex = (window.masonryIndex + 1) % window.masonryImages.length;
+                        const im = window.masonryImages[window.masonryIndex];
+                        lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCaption.textContent = im.caption || '';
+                    } else { updateLightboxContent(currentIndex + 1); }
+                }
+                if (e.key === 'ArrowLeft') {
+                    if (window.masonryMode) {
+                        window.masonryIndex = (window.masonryIndex - 1 + window.masonryImages.length) % window.masonryImages.length;
+                        const im = window.masonryImages[window.masonryIndex];
+                        lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCaption.textContent = im.caption || '';
+                    } else { updateLightboxContent(currentIndex - 1); }
+                }
             }
         });
     });
