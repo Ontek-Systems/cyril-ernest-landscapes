@@ -137,7 +137,7 @@
     </script>
 
  <section class="relative min-h-[100svh] flex flex-col pt-24 pb-16 overflow-hidden bg-brand-dark">
-    
+
     <div class="absolute inset-0 w-full h-full z-0 hero-slideshow">
         <img src="assets/Tony Best Pictures/HERO/HERO_1.webp" alt="Landscaping Background 1" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[2000ms] ease-in-out active">
         <img src="assets/Tony Best Pictures/HERO/HERO_2.webp" alt="Landscaping Background 2" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[2000ms] ease-in-out">
@@ -150,28 +150,33 @@
 
     <div class="absolute inset-0 bg-black/25 z-10"></div>
 
-            <!-- Top Vignette for Navbar -->
-            <div
-                class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none">
-            </div>
-
-            <!-- Bottom Vignette -->
-            <div
-                class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/90 to-transparent z-10 pointer-events-none">
-            </div>
+    <div class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/90 to-transparent z-10 pointer-events-none"></div>
 
     <div class="relative z-20 flex-grow flex flex-col items-center justify-center text-center px-4 sm:px-8 w-full max-w-[96rem] mx-auto reveal reveal-up">
-         
-         <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold mb-6 leading-tight text-white drop-shadow-2xl tracking-wide uppercase">
+
+        <!-- Google rating badge -->
+        <div class="inline-flex flex-col items-center gap-2 mb-4 px-6 py-4 rounded-2xl">
+            <div class="flex items-center gap-1.5">
+                <svg class="w-5 h-5 text-[#f2c83f]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 text-[#f2c83f]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 text-[#f2c83f]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 text-[#f2c83f]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 text-[#f2c83f]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="font-body text-white/90 text-sm font-semibold tracking-wide">5-Star Rated on Google</span>
+        </div>
+
+        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold mb-6 leading-tight text-white drop-shadow-2xl tracking-wide uppercase">
             Cyril Ernest Landscapes
         </h1>
 
-        <p class="font-body text-lg md:text-xl text-white/95 font-medium leading-relaxed max-w-3xl drop-shadow-md mb-8">
+        <p class="font-body text-lg md:text-xl text-white/95 font-medium leading-relaxed max-w-3xl drop-shadow-md mb-10">
             Taking pride in delivering high-quality gardening and landscaping services tailored to your specific needs. Trustworthy, loyal, and professional since 1996.
         </p>
 
         <div class="flex flex-row flex-wrap gap-4 sm:gap-6 items-center justify-center">
-            
+
             <a href="contact.html"
                 class="site-btn group relative gap-4 pl-8 pr-3 py-3 bg-[#df5164] text-white font-body font-bold text-xl rounded-full overflow-hidden transition-transform duration-500 hover:scale-105 border-none shadow-[0_0_20px_rgba(231,64,64,0.4)]">
                 <span class="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 rounded-full transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[25] z-0"></span>
@@ -183,21 +188,16 @@
                 </span>
             </a>
 
-<a href="gallery.html"
-    class="site-btn group relative gap-4 pl-8 pr-3 py-3 bg-white text-[#df5164] font-body font-bold text-xl rounded-full overflow-hidden transition-transform duration-500 hover:scale-105 border-none shadow-xl">
-    
-    <span class="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-50 rounded-full transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[25] z-0"></span>
-    
-    <span class="relative z-10 transition-colors duration-500">
-        View Our Gallery
-    </span>
-
-    <span class="relative z-10 w-12 h-12 flex items-center justify-center bg-[#df5164] rounded-full">
-        <svg class="w-6 h-6 text-white -rotate-45 transition-transform duration-500 ease-in-out group-hover:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6l6 6-6 6"></path>
-        </svg>
-    </span>
-</a>
+            <a href="gallery.html"
+                class="site-btn group relative gap-4 pl-8 pr-3 py-3 bg-white text-[#df5164] font-body font-bold text-xl rounded-full overflow-hidden transition-transform duration-500 hover:scale-105 border-none shadow-xl">
+                <span class="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-50 rounded-full transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[25] z-0"></span>
+                <span class="relative z-10 transition-colors duration-500">View Our Gallery</span>
+                <span class="relative z-10 w-12 h-12 flex items-center justify-center bg-[#df5164] rounded-full">
+                    <svg class="w-6 h-6 text-white -rotate-45 transition-transform duration-500 ease-in-out group-hover:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6l6 6-6 6"></path>
+                    </svg>
+                </span>
+            </a>
 
         </div>
 
@@ -415,7 +415,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 gap-4 lg:gap-6 w-full max-w-5xl mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full max-w-[96rem] mx-auto">
 
                 <!-- Garden Design -->
                 <a href="services.html#garden-design" class="group flex flex-col rounded-[1.5rem] overflow-hidden reveal reveal-up transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
