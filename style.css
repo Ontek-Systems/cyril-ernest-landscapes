@@ -44,27 +44,24 @@ img {
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Buttons: never stretch full-width on mobile ── */
-.site-btn, 
-a.group.relative.inline-flex.rounded-full, 
-button.group.relative.inline-flex.rounded-full {
-    display: inline-flex;
+/* ── Buttons: safe, centered, non-stretching on mobile ── */
+/* Apply .btn-pill to any CTA button element in HTML */
+.btn-pill,
+.site-btn {
+    display: inline-flex !important;
     align-items: center;
     justify-content: space-between;
-    width: fit-content !important;
-    max-width: 100% !important;
-    align-self: center !important;
+    width: auto !important;
+    max-width: 100%;
     white-space: nowrap;
+    align-self: center;
 }
 
 @media (max-width: 639px) {
-    .site-btn, 
-    a.group.relative.inline-flex.rounded-full, 
-    button.group.relative.inline-flex.rounded-full {
+    .btn-pill,
+    .site-btn {
         margin-left: auto !important;
         margin-right: auto !important;
-        display: flex !important;
-        white-space: normal !important;
     }
 }
 
