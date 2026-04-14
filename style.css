@@ -54,30 +54,17 @@ button.group.relative.inline-flex.rounded-full {
     width: fit-content !important;
     max-width: 100% !important;
     align-self: center !important;
-    white-space: normal !important;
+    white-space: nowrap;
 }
 
 @media (max-width: 639px) {
     .site-btn, 
     a.group.relative.inline-flex.rounded-full, 
     button.group.relative.inline-flex.rounded-full {
-        padding-top: 0.4rem !important;
-        padding-bottom: 0.4rem !important;
-        padding-left: 1.15rem !important;
-        padding-right: 0.4rem !important;
-        font-size: 0.95rem !important;
-        gap: 0.75rem !important;
         margin-left: auto !important;
         margin-right: auto !important;
         display: flex !important;
-        text-align: left;
-    }
-
-    .site-btn > span:last-child,
-    a.group.relative.inline-flex.rounded-full > span:last-child,
-    button.group.relative.inline-flex.rounded-full > span:last-child {
-        width: 2.2rem !important;
-        height: 2.2rem !important;
+        white-space: normal !important;
     }
 }
 
