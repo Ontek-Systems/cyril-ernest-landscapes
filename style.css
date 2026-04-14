@@ -44,24 +44,32 @@ img {
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Buttons: safe, centered, non-stretching on mobile ── */
-/* Apply .btn-pill to any CTA button element in HTML */
-.btn-pill,
+/* ── Buttons: never stretch full-width on mobile ── */
 .site-btn {
-    display: inline-flex !important;
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
     width: auto !important;
-    max-width: 100%;
     white-space: nowrap;
-    align-self: center;
 }
 
-@media (max-width: 639px) {
+/* ── Mobile: center all pill buttons, prevent edge-to-edge stretching ── */
+@media (max-width: 767px) {
     .btn-pill,
     .site-btn {
-        margin-left: auto !important;
-        margin-right: auto !important;
+        display: inline-flex !important;
+        width: auto !important;
+        max-width: 88vw;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 0.45rem !important;
+        padding-bottom: 0.45rem !important;
+    }
+
+    /* Ensure wrapper divs that flex-row buttons sit in are centered */
+    .flex.flex-row.flex-wrap.gap-4,
+    .flex.flex-row.flex-wrap.gap-6 {
+        justify-content: center;
     }
 }
 
