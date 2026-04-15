@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 container.classList.add('py-2', 'md:py-3');
                 
                 // Switch to dark logo
-                headerLogo.src = 'assets/imgs/logo_dark_txt.png';
+                headerLogo.src = 'assets/Tony%20Best%20Pictures/logo_dark_txt.png';
                 
                 // Update mobile menu button color
                 menuBtn.classList.remove('text-white');
@@ -63,13 +63,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Pages with light background at top: use dark logo (e.g. gallery, thank-you page)
                 const isLightTopPage = document.body.dataset.page === 'gallery' || document.body.dataset.page === 'thank-you';
                 if (isLightTopPage) {
-                    headerLogo.src = 'assets/imgs/logo_dark_txt.png';
+                    headerLogo.src = 'assets/Tony%20Best%20Pictures/logo_dark_txt.png';
                     header.classList.add('gallery-dark-nav');
                     menuBtn.classList.add('text-brand-dark');
                     menuBtn.classList.remove('text-white');
                 } else {
                     // All other pages: light logo over dark hero
-                    headerLogo.src = 'assets/imgs/logo_light_txt.png';
+                    headerLogo.src = 'assets/Tony%20Best%20Pictures/logo_light_txt.png';
                     menuBtn.classList.remove('text-brand-dark');
                     menuBtn.classList.add('text-white');
                 }
